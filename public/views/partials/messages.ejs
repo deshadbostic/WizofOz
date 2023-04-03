@@ -1,0 +1,26 @@
+<!-- <% if(typeof errors != 'undefined') { %>
+
+<%= //error.msg %>
+
+<% } %> -->
+
+
+<% if(success_msg != '') { %>
+<%= success_msg    %>
+<%  } %>
+
+<% if(error_msg != '') { %>
+    <%= error_msg   %>
+    <%  } %>
+
+    <% if(error) { %>
+        <%= error  %>
+        <%  } %>
+
+        <% if(user) { %>
+            <script>
+             var caloriegoal = <%=  user.cal_main  %>
+             
+            </script>
+            <%  } %>
+        

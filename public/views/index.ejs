@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="title" content="Putrowowi Calorie Trackers">
+    <meta name="description" content="this is a calorie tracker that allows you to keep track of your diet and review your diet over a period of time and compare to your progress useful for health and fitness so your excercise isnt wasted">
+    <meta name="keywords" content="Calorie Tracker,fitness,exercise,Health,progress">
+    <title>Calorie Tracker</title>
+
+    <link href="../css/index.css" rel="stylesheet">
+
+     <!-- google site verification-->
+    <meta name="google-site-verification" content="dAtdZq_33N3lGLO7bSlx9C9heicUy1TJ2ATQih_vuc8" />
+    <link href = "https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@500;700&display=swap" rel = "stylesheet">
+</head>
+<body>
+  <section class="container">
+     <header>
+         <% if(errors)  { %> 
+            <%= errors %>
+         <% } %> 
+         <% if(message)  { %> 
+            <%= message.msg%>
+         <% } %> 
+            <!-- <% if(success_msg != '') { %>
+              <%= success_msg    %>
+              <%  } %> -->
+              
+              <% if(error_msg != '') { %>
+                  <%= error_msg   %>
+                  <%  } %>
+      
+
+
+         <!--<img src="https://www.myfitnesspal.com/react-static/53af3757ef0dac6bc550728bdf9e779b.svg">-->
+         <nav>  
+                <%- include('partials/navigation'); %> 
+                <%- include('partials/messages'); %> 
+         </nav> </header> 
+        <main class="maincontainer"> 
+  <section class="websitetitle"> 
+  <h1 class="websitename"> Calorie Tracker </h1> 
+
+  </section>
+  <section id="registration">
+    <%- include('partials/registration'); %>
+       </section>
+
+      <section id="calorie_info">
+        <%- include('partials/calorie_section'); %>
+      </section>
+    
+    <section id="inputsection">
+      <%- include('partials/input'); %> 
+      <%- include('partials/createfood'); %>
+      <%- include('partials/createmeals'); %>
+      <%- include('partials/dietlist'); %>
+      <%- include('partials/viewfood'); %>
+      <%- include('partials/servingchange'); %>
+    </section>
+  
+</main>
+     
+<!-- basic squares ads -->
+<!-- <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-3212328035208798"
+     data-ad-slot="5401726644"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins> -->
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+
+<footer>
+  <nav> 
+  <a href="mailto:putrowowi@outlook.com">contact us</a>
+    <a href="../html/privacy_policy.html">privacy policy </a>
+  
+  </nav> 
+</footer>
+    
+    <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script> -->
+    <script src="/chart.js"></script>
+    <script src="/jquery.js"></script>
+    <script src="../js/indesx.js"></script>
+    </section>
+</body>
+</html>

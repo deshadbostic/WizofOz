@@ -1,0 +1,12 @@
+<input class="search" type="search"> `
+<img id="magni"  src="../images/magnifying-glass-icon-14.png" width="50px"class="search" >  
+<span class="company_name" onclick="window.location='/'">  Putrowowi </span>
+<% if(!user) {%>
+<div id="registrationbtns"> 
+     <a href="#signup" class="profile signup navitems" onclick="loadsignup()"> 
+        signup </a>
+        <a href="#login"  class="profile login navitems" onclick="loadlogin()"> login  </a> 
+    </div> 
+    <% }else{ %>
+      <%- include('./loginnavigation'); %> 
+         <% }%>

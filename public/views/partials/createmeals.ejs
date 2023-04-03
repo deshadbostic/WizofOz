@@ -1,0 +1,42 @@
+<Section id="cmeal" class="stripedbackground visibilityoff">  
+    <%- include('closeinputsection.ejs'); %>  
+<form action="/foods/addmeal" id="cmealform" method="POST"  onsubmit="createmeal();" enctype="multipart/form-data"> 
+    <div class="flexrow"> 
+        <div class="labelinput">    
+            <label class="mealadderlabel"> Meal Name</label> 
+            <input class="mealadder" name="name" type="text" placeholder="name" required>
+         </div>
+    </div>
+  <div class="flexrow"> 
+         <div class="labelinput">    
+            <label class="mealadderlabel"> serving size</label> 
+            <input class="mealadder" name="serving_size" type="text" placeholder="serving_size" required>
+         </div>
+         <select class="mealadder" name="serving_type"id="serving_typemeal"> 
+            <option value="g">grams</option>
+            <option value="mg">mg</option>
+            <option>item</option>
+            </select>
+        </div>
+        <%x=0;%>
+            <section id="Meal_Components" class="visibilityoff">
+                <select name="food[<%=x%>][foodid]" id="foodlistformeal" class="foodlistsformeal">
+                    <option value="">loading</option>
+                    </select>
+                <input  name="food[<%=x%>][serving_size]" class="mealadder" type="text" placeholder="serving_size"> 
+                <%x++;%>
+                <!-- <select name="food[<%=x%>][foodid]" id="foodlistformeal" class="foodlistsformeal">
+                    <option value="">loading</option>
+                    </select>
+                <input class="mealadder" name="food[<%=x%>][serving_size]" type="text" placeholder="serving_size"> 
+                <%x++;%> -->
+            </section>
+			<button id="add" class="mealadder" type="button" onclick="unknown('Meal_Components')"> Add Foods</button>
+            <button id="togglemealcomp" class="mealadder" type="button" onclick="toggleelement('Meal_Components')"> Toggle Add Foods</button>
+            <label>Place image for food</label>
+            <input type="file" name="image" accept="image/*" required /> <!-- image/png, image/gif, image/jpeg -->
+            
+
+        <button class="inputssecbtn mealadder" type="submit">   add Meal</button>
+        </form> 
+    </Section>
