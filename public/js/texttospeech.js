@@ -54,7 +54,7 @@ function testSpeech() {
     if(speechResult === phrase) {
       count=0;
       //play video in return
-      if(phrase=="you are good"){
+      if(phrase=="thank you for your time"){
         //launch goodbye vid
 
         //leave page
