@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <title>Group Management System</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 0;
+        }
+        p {
+            font-size: 18px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #566;
+        }
+        .add-group-link {
+            color: #0077FF;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .add-group-link i {
+            margin-right: 5px;
+        }
+        .add-group-link:hover {
+            color: #0057CC;
+        }
+    </style>
+</head>
+<body onload="loadgroups()">
+    <header>
+        <h1>Group Management System</h1>
+    </header>
+    <div class="container">
+        <p>Create or manage groups:</p>
+        <a class="add-group-link" href="./creategroup"><i class="fa fa-plus"></i>Create Group</a>
+        <form action="./editgroup" method="POST">
+            <label for="grouplist">Select a group:</label>
+            <select id="grouplist" name="groupid">
+
+            </select>    
+            <button>Manage Group</button> 
+        </form>
+    </div>
+    <script src="/jquery.js"></script>
+    <script src="../../js/indesx.js"></script>
+</body>
+</html>

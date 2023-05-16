@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Video</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-7q3q0XuY7V8dMzBp7VwTpLYz0R3DfblX9Y3e/A8ZGnS2VlRmKS4zvdV7Eri4J4uH/Up1+dyMvxW7SZ8tBhYe5w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 0;
+        }
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #addVideosInput {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #fff;
+            color: #555;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+    
+        .add-video-btn {
+            background-color: #0077cc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .add-video-btn:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Add Video</h1>
+    </header>
+    <div class="container">
+        <form action="/videos/addvideo" method="POST" enctype="multipart/form-data">
+            <label for="addVideosInput">Select a video file:</label>
+            <input type="file" name="video" id="addVideosInput" accept="video/*">
+            <button class="add-video-btn">Add Video</button>
+        </form>
+    </div>
+</body>
+</html>

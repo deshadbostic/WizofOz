@@ -9,33 +9,63 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const cors= require('cors')
+const {Sequelize, Model, DataTypes } = require('sequelize')
 
 const fs = require('fs');
 const mysql = require('mysql');
 
 
-//passport config
-   //console.log(req.session)
-require("./config/passport")(passport);
-// db setup
-app.use(require('connect-flash')());
 
-var con = mysql.createConnection({
+
+var db = {};
+const sequelize = new Sequelize("wozbase","pma","",{
   host: "localhost",
-  user: "pma",
-  password: "",
-  database: "wozbase"
+  dialect: "mysql",
+  dialectModule:require("mysql2"),
+  define: {
+    timestamps: false
+}
 });
 
-con.connect(function(err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
+sequelize.authenticate().then(() => {
+  console.info('INFO - Database connected.')
+    // Export db as a module
+    db.sequelize = sequelize;
+    db.Sequelize = Sequelize;
+    
+        module.exports.db = db;
+        let User= require('./models/users');
+        let Study= require('./models/studies');
+        let Response= require('./models/responses');
+        let Group= require('./models/group');
+        let GroupSequence= require('./models/groupseq');
+        let Video= require('./models/videos');
+        db.Video=Video.Video
+        db.GroupSequence=GroupSequence.GroupSequence
+        db.Group=Group.Group
+        db.Response=Response.Response
+        db.User= User.User;
+        db.Study= Study.Study;
+        module.exports.db = db;
+        require("./config/passport")(passport);
+       
+ })
+ .catch(err => {
+  console.error('ERROR - Unable to connect to the database:', err)
+ })
 
-
+  module.exports = db;
+  
 //body parser setup
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json()); 
+
+require('dotenv').config();
+//passport config
+   //console.log(req.session)
+
+// db setup
+app.use(require('connect-flash')());
 
 
 app.use(cors({
@@ -62,7 +92,7 @@ const multer = require('multer');
 
 //bring in dbmodels
 
-let User= require('./models/users');
+
 
 app.use(cookieParser('pass'));
 //express session middleware
@@ -117,16 +147,19 @@ app.use(expressValidator({
 }));
 
 
-//router files
-let users = require('./routers/users.js');
-let videos = require('./routers/videos.js');
-let admin = require('./routers/admin.js');
+ //router files
 
-app.use('/users',users);
+ let videos = require('./routers/videos.js');
+ let admin = require('./routers/admin.js');
+ let users = require('./routers/users.js');
+ let studies = require('./routers/studies.js');
+ app.use('/study',studies);
+        app.use('/users',users);
+ 
+ app.use('/videos',videos);
+ 
+ app.use('/admin',admin);
 
-app.use('/videos',videos);
-
-app.use('/admin',admin);
 app.use(express.static(path.join(__dirname,"public" )));
 app.set('views', './public/views');
 app.set('view engine', 'ejs');
@@ -147,7 +180,35 @@ app.get('/',(req,res) =>{
   console.log(req.session);
   //console.log(req.flash('error')[0]);
   //console.log(res.locals.user)
+
+  if(('passport' in req.session)){
+    if(('user' in req.session.passport)){
+       //output videos
+       return res.redirect('/admin');
+}
+}else{
   res.render('index.ejs',{ success_msg: req.flash('message'),error:req.flash('error') });
+}
+
+
+});
+app.get('/carryoutstudy',(req,res) =>{ 
+  //req.flash('message','custom message from flash')
+  console.log(req.isAuthenticated());
+  console.log(req.session);
+  //console.log(req.flash('error')[0]);
+  //console.log(res.locals.user)
+  res.render('choosestudy.ejs',{ success_msg: req.flash('message'),error:req.flash('error') });
+
+});
+
+app.get('/thankyou',(req,res) =>{ 
+  //req.flash('message','custom message from flash')
+  console.log(req.isAuthenticated());
+  console.log(req.session);
+  //console.log(req.flash('error')[0]);
+  //console.log(res.locals.user)
+  res.render('thankyou.ejs',{ success_msg: req.flash('message'),error:req.flash('error') });
 
 });
 
@@ -159,3 +220,4 @@ app.use(function(req,res){
 const PORT=process.env.PORT || 5000;
 console.log(PORT);
 app.listen(PORT,() =>console.log(`server started ${PORT}`));
+

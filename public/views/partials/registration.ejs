@@ -6,7 +6,7 @@
           <form action ="/users/login" method="POST" onsubmit="login();"> 
            <b>  Log in </b> 
             <br/>
-            <input type="text" class="login" placeholder="Username" name="email" required>
+            <input type="text" class="login" placeholder="email" name="email" required>
               <br/>
               <br/>
             <input type="password" class="login" placeholder="Password" name="password" required>
@@ -75,9 +75,9 @@
 			</div>
               <form action ="/users/register" method="POST" onsubmit="()=>{return signuphandler('form')}">
                 <section id="spart1" class="signupparts"> 
-                  <input type="text" class="signup" placeholder="firstname" name="firstname"  required >
+                  <input type="text" class="signup" placeholder="firstname" name="fname"  required >
                 </br></br>
-                 <input type="text" class="signup"placeholder="lastname" name="lastname"    >
+                 <input type="text" class="signup"placeholder="lastname" name="lname"    >
                 </br></br>
                 <input type="email" class="signup"placeholder="Email" name="Email" pattern="^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" required>
               &nbsp; <p class="error signuperr" style="display: inline;"> please enter a valid email </p>
@@ -91,9 +91,9 @@
             <input type="password" class="signup" placeholder="confirm Password" pattern="^([- \w\d\u00c0-\u024f]+)$" required>
                 </section>
             <section id="spart3" class="signupparts"> 
-                <input type="number" class="signup" placeholder="usertype" pattern="[0-9\/]*" optional>
+                <input type="text" class="signup" placeholder="usertype" name="role" optional>
                 </br></br>
-                <input type="number" class="signup" placeholder="permission" pattern="[0-9\/]*" required>
+                <input type="text" class="signup" placeholder="Username" name="username" required>
                 </br></br>
                 <input type="text" class="signup" placeholder="Enter any allergies if apply"  optional> 
               </br></br>

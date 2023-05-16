@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        body {
+            background-color: #222;
+            color: #fff;
+        }
+
+        #divVideo {
+            margin-top: 2em;
+            border: 1px solid #fff;
+            padding: 1em;
+            background-color: rgba(0, 0, 0, 0.854);
+        }
+
+        video {
+            display: block;
+            margin: 0 auto;
+            
+        }
+
+        video::-webkit-media-controls {
+    display:none !important;
+}
+
+        p {
+            margin: 0;
+            padding: 0.5em;
+            font-size: 1.5em;
+        }
+
+        .phrase {
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .result {
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .output {
+            font-size: 0.8em;
+        }
+
+        button {
+            display: block;
+            margin: 0.4em auto;
+            padding: 0.5em;
+            font-size: 1.2em;
+            background-color: #fff;
+            color: #222;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:disabled {
+            background-color: #ccc;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    welcomey
+    <button>Start new test</button>
+
+    <div id="divVideo">
+        <video id="video" controls  width="560" autoplay loop>
+            <source id="mp4" type="video/mp4" src="../images/videos/waitsequence.mp4"/>
+        </video>
+    </div>
+    
+    <div>
+        <p class="phrase">Phrase...</p>
+        <p class="result">Recognizable or not?</p>
+        <p class="output">...diagnostic messages</p>
+    </div>
+
+
+    <script>
+        const responses=JSON.parse('<%- responses %>');
+    </script>
+    <script src="../js/texttospeech.js"></script>
+</body>
+</html>

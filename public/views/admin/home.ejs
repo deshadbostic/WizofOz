@@ -4,33 +4,86 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Dashboard</title>
     <style>
+        body {
+          margin: 0;
+          padding: 0;
+          font-family: Arial, sans-serif;
+          background-color: #f2f2f2;
+        }
+        
+        .header {
+          background-color: #333;
+          color: #fff;
+          text-align: center;
+          padding: 20px;
+        }
+        
         .grid-container {
           display: grid;
-          grid-template-columns: auto auto auto;
-          
-          padding: 10px;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          grid-gap: 20px;
+          padding: 30px;
+          margin: 50px auto;
+          max-width: 1200px;
         }
+        
         .grid-item {
-          background-color: rgba(255, 255, 255, 0.8);
-          border: 1px solid rgba(0, 0, 0, 0.8);
-          padding: 20px;
-          font-size: 30px;
+          background-color: #ffffff;
+          box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+          border-radius: 5px;
+          padding: 30px;
+          font-size: 24px;
           text-align: center;
+          transition: all 0.3s ease-in-out;
         }
-        </style>
+        
+        .grid-item:hover {
+          transform: translateY(-5px);
+          box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .grid-item a {
+          text-decoration: none;
+          color: #333;
+          cursor: pointer;
+          outline: none; /* Remove text highlight */
+        }
+        
+        @media screen and (max-width: 768px) {
+          .grid-container {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            padding: 20px;
+          }
+          
+          .grid-item {
+            font-size: 20px;
+            padding: 60px;
+          }
+        }
+    </style>
 </head>
 <body>
-   
-   
+  <div class="header">
+    <h1>Admin Dashboard</h1>
+  </div>
     <div class="grid-container">
-
-   <a class="grid-item"  href="./vmanager"> video manager</a> 
-   <a class="grid-item" href="./researchmanager"> research study manager</a> 
-   <a class="grid-item" href="./videomanager"> participant manager</a> 
-   <a class="grid-item" href="./responsemanager"> response manager</a> 
-   <a class="grid-item" href="./videomanager"> research group manager</a> 
-   </div>
+        <div class="grid-item">
+            <a href="/admin/vmanager">Video Manager</a>
+        </div>
+        <div class="grid-item">
+            <a href="/admin/researchmanager">Research Study Manager</a>
+        </div>
+        <div class="grid-item">
+            <a href="/admin/participantmanager">Participant Manager</a>
+        </div>
+        <div class="grid-item">
+            <a href="/admin/responsemanager">Response Manager</a>
+        </div>
+        <div class="grid-item">
+            <a href="/admin/groupmanager">Research Group Manager</a>
+        </div>
+    </div>
 </body>
 </html>

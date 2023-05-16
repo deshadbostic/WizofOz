@@ -1,21 +1,25 @@
+const Sequelize = require('sequelize');
+const DataTypes = require('sequelize/lib/data-types');
+var db = require('../index');
+var sequelize=db.sequelize;
+// Define your Sequelize model
+class User extends Sequelize.Model {}
+User.init(
+  {
+    UserId: {type: DataTypes.BIGINT, primaryKey: true, autoIncrement: true},
+    Username: {type: DataTypes.STRING, primaryKey: false, allowNull: false},
+    Fname:DataTypes.STRING,
+    Lname:DataTypes.STRING,
+    Password: DataTypes.STRING,
+    Email:DataTypes.STRING,
+    Role:DataTypes.STRING
+  },
+  { sequelize: sequelize, modelName: "User", tableName: 'Users' }
+);
 
-const {Sequelize, Model, DataTypes } = require('sequelize')
+// Add your model to the db object
+db.User = User;
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-const UserModel = (sequelize, Sequelize) => {
-    const {INTEGER, STRING, FLOAT, BOOLEAN, DATE} = Sequelize
-    const User = sequelize.define('User', {
-        UserId: {type: INTEGER, primaryKey: true, autoIncrement: true},
-        Username: {type: STRING, primaryKey: false, allowNull: false},
-        Fname:STRING,
-        Lname:STRING,
-        Password: STRING,
-        Email:STRING,
-        Role:STRING,
-
-        
-    })
-    return User
-}
-
-
-let Users =module.exports = UserModel;
+  module.exports = db;

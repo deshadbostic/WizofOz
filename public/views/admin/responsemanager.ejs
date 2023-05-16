@@ -1,31 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Response Manager</title>
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 0;
+        }
+        p {
+            font-size: 18px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: #566;
+        }
+        .add-response-link {
+            color: #0077FF;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .add-response-link i {
+            margin-right: 5px;
+        }
+        .add-response-link:hover {
+            color: #0057CC;
+        }
         .grid-container {
-          display: grid;
-          grid-template-columns: auto auto auto;
-          
-          padding: 10px;
+            display: grid;
+            grid-template-columns: auto 20px auto;
+            padding: 10px;
+            align-items: center;
         }
         .grid-item {
-          background-color: rgba(255, 255, 255, 0.8);
-          border: 1px solid rgba(0, 0, 0, 0.8);
-          padding: 20px;
-          font-size: 30px;
-          text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            font-size: 30px;
+            text-align: center;
         }
-        </style>
+        .form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+
+.select-container {
+  flex-basis: calc(50% - 10px);
+}
+
+#responselist,
+#grouplist {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  font-size: 16px;
+}
+
+button {
+  flex-basis: calc(50% - 10px);
+}
+    </style>
 </head>
-<body>
-    <div class="grid-container">
-    <a class="grid-item" href="./createstudy"> create study</a> 
-    <a class="grid-item" href="./createstudy"> configure study</a> 
-    <a class="grid-item" href="./createstudy"> delete study</a> 
- </div>
+<body onload="loadresponses(),loadgroups()">
+    <header>
+        <h1>Response Manager</h1>
+    </header>
+    <div class="container">
+      <p> configure responses:</p>
+      <!-- <a class="add-response-link" href="/admin/addresponses"><i class="fas fa-plus"></i>Add Response</a> -->
+      <form action="/admin/attachresponse" method="POST">
+          <div class="form-container">
+              <div class="select-container">
+                  <select id="responselist" name="optionname"></select>
+              </div>
+              <div class="select-container">
+                  <select id="grouplist" name="groupname"></select>
+              </div>
+              <button>add response to group</button>
+          </div>
+      </form>
+  </div>
+    <script src="/jquery.js"></script>
+
+<script src="../../js/indesx.js"></script>
 </body>
 </html>

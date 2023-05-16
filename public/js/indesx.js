@@ -157,11 +157,114 @@ function implementvideolist(foodlist){
         let opt =  foodlist[i];
         let el = document.createElement("option");
         el.textContent = opt;
-        el.value =i;
+        el.value =foodlist[i];
         select.appendChild(el);
     }
       }
 
+
+      function loadstudies(){
+        $.ajax({
+            url:"/study/",
+            type:"GET",
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(response){
+                 console.log(response);
+           implementstudylist( response);
+    }
+        });
+    }
+
+
+    function loadgroups(){
+        $.ajax({
+            url:"/study/loadgroups",
+            type:"GET",
+            contentType:"application/json; charset=utf-8",
+            dataType:"json",
+            success: function(response){
+                 console.log(response);
+           implementgrouplist( response);
+    }
+        });
+    }
+    function implementstudylist(foodlist){
+        let select = document.getElementById("studylist"); 
+        select.innerHTML="";
+         console.log( foodlist[0]);
+        for(let i = 0; i <  foodlist.length; i++) {
+            let opt =  foodlist[i].name;
+            let el = document.createElement("option");
+            el.textContent = opt;
+            el.value =foodlist[i].id;
+            select.appendChild(el);
+        }
+          }
+
+          function loadusers(groupid){
+            $.ajax({
+                url:"/users/loadusers",
+                type:"Get",
+                data: {groupid:groupid},
+                contentType:"application/json; charset=utf-8",
+                dataType:"json",
+                success: function(response){
+                     console.log(response);
+               implementuserlist( response);
+        }
+            });
+        }
+        function implementuserlist(foodlist){
+            let select = document.getElementById("userlist"); 
+            select.innerHTML="";
+             console.log( foodlist[0]);
+            for(let i = 0; i <  foodlist.length; i++) {
+                let opt =  foodlist[i].UserId;
+                let el = document.createElement("option");
+                el.textContent = opt;
+                el.value =foodlist[i].UserId;
+                select.appendChild(el);
+            }
+              }
+
+          function loadresponses(){
+            $.ajax({
+                url:"/study/loadresponses",
+                type:"GET",
+                contentType:"application/json; charset=utf-8",
+                dataType:"json",
+                success: function(response){
+                     console.log(response);
+               implementresponselist( response);
+        }
+            });
+        }
+        function implementresponselist(foodlist){
+            let select = document.getElementById("responselist"); 
+            select.innerHTML="";
+             console.log( foodlist[0]);
+            for(let i = 0; i <  foodlist.length; i++) {
+                let opt =  foodlist[i].contents;
+                let el = document.createElement("option");
+                el.textContent = opt;
+                el.value =foodlist[i].responseid;
+                select.appendChild(el);
+            }
+              }
+
+                function implementgrouplist(foodlist){
+            let select = document.getElementById("grouplist"); 
+            select.innerHTML="";
+             console.log( foodlist[0]);
+            for(let i = 0; i <  foodlist.length; i++) {
+                let opt =  foodlist[i].groupname;
+                let el = document.createElement("option");
+                el.textContent = opt;
+                el.value =foodlist[i].groupid;
+                select.appendChild(el);
+            }
+              }
 function changemain(subject){
     let input=document.getElementById("inputsectiontwo");
     let cfood=document.getElementById("cfood");
@@ -561,7 +664,7 @@ if(signupdata[0]){
 //handle appropriate errors
 
 //creating object
- let signupobj= {fname:signupdata[0],lname:signupdata[1],gender:signupdata[3],email:signupdata[2],password:signupdata[4],acc_type:"normal",cal_main:parseInt(signupdata[6]),cal_total:parseInt(signupdata[7]),allergies:signupdata[8]};
+ let signupobj= {fname:signupdata[0],lname:signupdata[1],gender:signupdata[3],email:signupdata[2],password:signupdata[4],role:signupdata[6],username:signupdata[7],cal_total:parseInt(signupdata[7]),allergies:signupdata[8]};
  //data sendoff
 
 // signupobj= JSON.stringify(signupobj);

@@ -1,9 +1,9 @@
 const localStrategy = require('passport-local').Strategy;
-const Users = require('../models/users');
+const db = require('../models/users');
 const database = require('./database');
 const bcrypt= require('bcryptjs');
 const passport = require('passport');
-
+const Users=db.User;
 module.exports = function (passport) {
 //local strategies 
 console.log('the passport file is being reached check 2');
@@ -16,27 +16,24 @@ passport.use( 'local',new localStrategy({
  
     let query ={email:email};
  console.log('the passport file is being reached check 3');
-    Users.findOne(query,(err,user)=>{
-      if (err) { 
-        console.log('Error :', err);
-        return done(err); 
-      }
+   Users.findOne({ where:query}).then( function(user) {  
       if (!user){
         console.log('Incorrect username:');
         console.log(req.session)
           return done(null,false,{message:"no user found"});
       }
-      bcrypt.compare(password,user.password,(err,isMatch)=>{
+      bcrypt.compare(password,user.Password,(err,isMatch)=>{
         if (err) { 
           console.log('Error :', err);
           return done(err); 
         }
          if(isMatch){
-           console.log("logged in");
+           console.log("logged in off");
              return done(null,user);
          }
          else {
            console.log("didnt probably wrong pass work");
+           console.log(password+user.Password);
             return done(null,false,{message:"password incorrect"});
          }
       });
@@ -46,15 +43,14 @@ passport.use( 'local',new localStrategy({
 
 passport.serializeUser(function(user, done) {
   console.log('seession started');
-    done(null, user.id);
+    done(null, user.UserId);
   });
   
-  passport.deserializeUser(function(id, done) {
+  passport.deserializeUser(function(UserId, done) {
     console.log('seesion ended');
-   // console.log(id)
-    Users.findById(id, function(err, user) {
-      console.log("note user found")
-      done(err, user);
+     Users.findByPk(UserId) .then( function(user) {
+      console.log("note user found"+user)
+      done(null, user);
     });
   });
 

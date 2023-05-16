@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/css/font-awesome.min.css">
+    <title>Edit Group</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .container {
+            margin: 20px auto;
+            width: 80%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h1 {
+            font-size: 36px;
+            margin-top: 0;
+        }
+        p {
+            font-size: 18px;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #566;
+        }
+        .add-video-link {
+            color: #0077FF;
+            text-decoration: none;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .add-video-link i {
+            margin-right: 5px;
+        }
+        .add-video-link:hover {
+            color: #0057CC;
+        }
+    </style>
+</head>
+<body onload="loadusers(<%- groupid %>)">
+    <header>
+        <h1>Edit Group</h1>
+    </header>
+    <div class="container">
+        <p>Add or remove group participants:</p>
+        <form action="/users/createuser" method="post"> 
+            <input type="hidden" value="<%- groupid %>" name="groupid">
+            <button>Add New Group Participant</button>
+        </form>  
+        <form action="/users/removeuser" method="post"> 
+            <label for="userlist">Select a user:</label>
+            <select id="userlist" name="userlist">
+
+            </select>
+            <button>Remove User From Group</button>
+        </form> 
+    </div>
+    <script src="/jquery.js"></script>
+    <script src="../../js/indesx.js"></script>
+</body>
+</html>
