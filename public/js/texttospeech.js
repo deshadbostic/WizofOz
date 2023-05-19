@@ -3,7 +3,7 @@ var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
 var count=0;
 var phrases = responses.map(a => a.content);
-phrases.push("goodbye")
+phrases.push("thank you for your time")
 var phrasePara = document.querySelector('.phrase');
 var resultPara = document.querySelector('.result');
 var diagnosticPara = document.querySelector('.output');

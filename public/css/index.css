@@ -19,21 +19,7 @@ height: 100%;}
     --primary-background: #fff4e5;
     --primary-button: #31b156;
     --ffffff: #ffffff;
-    --brand-name-style-sansita-swashed-71-pt-family: Sansita Swashed;
-    --brand-name-style-sansita-swashed-71-pt-weight: Regular;
-    --title-style-segoe-ui-103-pt-family: Segoe UI;
-    --title-style-segoe-ui-103-pt-weight: Regular;
-    --log-in-style-segoe-ui-39-pt-family: Segoe UI;
-    --log-in-style-segoe-ui-39-pt-weight: Regular;
-    --cb-style-segoe-ui-41-pt-family: Segoe UI;
-    --cb-style-segoe-ui-41-pt-weight: Bold;
-    --sign-up-style-segoe-ui-41-pt-family: Segoe UI;
     --sign-up-style-segoe-ui-41-pt-weight: Bold;
-    --brand-name-style-sansita-swashed-71-pt-size: 71rem;
-    --title-style-segoe-ui-103-pt-size: 103rem;
-    --log-in-style-segoe-ui-39-pt-size: 39rem;
-    --cb-style-segoe-ui-41-pt-size: 41rem;
-    --sign-up-style-segoe-ui-41-pt-size: 41rem;
   }
   
 body{
@@ -56,7 +42,6 @@ height: auto;
 .container{
    display: grid;
    height: 100%;
-   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
    grid: [row1] "header header header header header header" .7fr [row1end]
    [row2] "main main main main main main" 1fr [row2end] 
    [row3] "main main main main main main" 1fr [row3end] 
@@ -97,7 +82,6 @@ header .company_name{
     position :absolute;
     left:40%;
     color: #2B7A9C;
-    font-family: Sansita Swashed;
       top:20%;
    
     font-size: clamp(2rem, 3.5vw, 4.5rem);
@@ -146,7 +130,7 @@ header .profile.login{
   margin-bottom: 20px;
   color: rgb(85, 38, 38);
   font-size: 38px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
   text-indent: 35px;
 }
 .smallarrow:before {
@@ -183,13 +167,13 @@ a.navitems{
     font-size: 2.4vw;
     font-weight: bold;
     /* padding-right: 146px; */
-    font-family: var(--sign-up-style-segoe-ui-41-pt-family);
+   
 }
 .navitems.login{
     color:#011C27 ;
     font-size: 2.2vw;
     
-    font-family: var(--sign-up-style-segoe-ui-41-pt-family);
+ 
 }
 input.search{
     display: none ;
@@ -339,7 +323,7 @@ main{
 }
  h1.websitename{
    color:var(--title);
-   font-family: var(--title-style-segoe-ui-103-pt-family);
+   
    font-weight: normal;
    font-size: 6vw;
  }
@@ -471,7 +455,7 @@ footer a{
     font-weight: bold;
     color:var(--primary-background);
     font-size: 1.6vw;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   
 }
 
 /* gotta remove and fix */
