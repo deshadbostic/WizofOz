@@ -54,13 +54,4 @@ passport.serializeUser(function(user, done) {
     });
   });
 
-//   passport.deserializeUser(function(id, done) {
-//     console.log('seesion ended');
-//     // User.findById(id, function(err, user) {
-    
-//     // }); 
-//     let err=null;
-//      done(err, { firstName: 'Foo', lastName: 'Bar' });
-//   });
-// } 
 }

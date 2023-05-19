@@ -1,126 +1,7 @@
 
 var loginstatus;
-if(typeof(caloriegoal) == "undefined"){
-    var caloriegoal=3500;
-    loginstatus=false;
-}else{
-    loginstatus=true;
-}
 
-let calorie_goal=caloriegoal;
-let calorie_total =0;
-let amount;
-let protein_total=0;
-let carbs_total=0;
-let fats_total=0;
-let sodium_total=0;
-let cupsofwater=0;
-// var xy;
-let diet=[];
-let foodlist;
-let dietlist;
-const goal=document.getElementById('goal_output');
-var fields = [
-    document.getElementsByTagName("input"),
-    document.getElementsByTagName("textarea")
-  ];
-  for (var a = fields.length, i = 0; i < a; i++) {
-    for (var b = fields[i].length, j = 0; j < b; j++) {
-      addEvent(fields[i][j], "change", function(e, target) {
-        instantValidation(target);
-      });
-    }
-  }
-function addfood(){
-    let fooditem=document.getElementById("foodlist").value;
-addfooditems(fooditem);
-}
-// function consumption(food_type){
-//     //legacy
-//       let amount=document.getElementsByClassName("x287");
-//     //add(foodlist[food_type],amount[0].value);
-//     add(jsondata[food_type],amount[0].value);
-// }
-function addfooditems(food_type){
-    let amount=document.getElementsByClassName("x287");
-    console.log(amount[0].value);
-    console.log(foodlist);
-    if(amount[0].offsetParent === null){
-        add(foodlist[food_type],amount[1].value);
-        return;
-    }
-  add(foodlist[food_type],amount[0].value);
- // add(jsondata[food_type],amount[0].value);
-}
-let add_calories=(amount,quantity)=>{
-    calorie_total=((amount*quantity)+calorie_total).toFixed(3) * 1;
-}
-let add_protein=(amount,quantity)=>{
-    protein_total=((amount*quantity)+protein_total).toFixed(3) * 1;
-    }
-let add_carbs=(amount,quantity)=>{ //could prob put this in another file when u are not lazy
-    carbs_total=((amount*quantity)+carbs_total).toFixed(3) * 1;
-        }
-let add_fats=(amount,quantity)=>{
-    fats_total=((amount*quantity)+fats_total).toFixed(3) * 1;
-            }
-let add_sodium=(amount,quantity)=>{
-         sodium_total=((amount*quantity)+sodium_total).toFixed(3) * 1;
-         console.log(sodium_total,);
-             }
-let add=(name,quantity)=>{
-    console.log(name);
-    try{
-
-       if(!name.servingfactor){
-		bar;
-	   }
-        quantity=quantity*name.servingfactor;
-        console.log(quantity);
-    }
-    catch(e) {
-        if(e.name == "ReferenceError") {
-			console.log("bar is not decared");
-            barIsDeclared = false;
-        }
-    }
-    
-    add_calories(name.calories,quantity);
-    add_fats(name.fats,quantity);
-    add_protein(name.protein,quantity);
-    add_carbs(name.carbs,quantity);
-    // console.log(name.micro_nutrients.Minerals['Macro Minerals'].Sodium.$numberDecimal); old format
-    add_sodium(name.micro_nutrients.Minerals['Macro Minerals'].Sodium,quantity);
-    savediet(name._id,quantity)
-    reload();
-    }
-let evaluategoals=()=>{
-    if(caloriegoal<=calorie_total){
-        document.getElementById("goal_output").style.color="green";
-        console.log("go green");
-    }else{
-        console.log("now she outta of bentley");
-    }
-}
-
-
-
-function toggletablefocus(elem){
-    let daynumber=0;
-    elem=document.getElementsByClassName(elem)[0];
-    while(!elem.classList.contains(`daysummarycalinfo${daynumber}`)){
-        daynumber++;
-    }
-    let elements=document.getElementsByClassName(`tableitemscalinfo${daynumber}`);
-    for (var i = 0; i < elements.length; i++) {
-        if ( !(elements[i].classList.contains('visibilityoff'))) {
-            elements[i].classList.add('visibilityoff');
-        } else {
-            elements[i].classList.remove('visibilityoff');
-        }
-    }
-}
-
+  
 function toggleelement(element){
     if(element){
             let x = document.getElementById(element);
@@ -265,71 +146,7 @@ function implementvideolist(foodlist){
                 select.appendChild(el);
             }
               }
-function changemain(subject){
-    let input=document.getElementById("inputsectiontwo");
-    let cfood=document.getElementById("cfood");
-    let cmeal=document.getElementById("cmeal");
-    let dietlistel = document.getElementById("dietlist"); 
-    let viewfood = document.getElementById("viewfood"); 
-    let servingchange = document.getElementById("servingchange"); 
-    let marginreduc =document.getElementsByClassName("websitename")[0];
-    marginreduc.classList.add("marginreduc");
-    reload();
-    if(subject=="createfood"){
-        input.style.display="none";
-        cfood.style.display="block";
-        viewfood.style.display="none";
-        dietlistel.style.display="none";
-    }
-    if(subject=="dietlist"){
-        input.style.display="none";
-    dietlistel.style.display="block";
-    viewfood.style.display="none";
-    cfood.style.display="none";
-    }
-    if(subject=="input"){
-        marginreduc.classList.remove("marginreduc");
-        if(viewfood.style.display=="block"){
-            let myc=document.getElementById("myCanvas");
-            if(myc.classList.contains("showcircle")) myc.classList.remove("showcircle") ;
-        } 
-        //need changing
-        input.style.display="block";
-        cfood.style.display="none";
-        dietlistel.style.display="none";
-        viewfood.style.display="none";
-        servingchange.style.display="none"
-		cmeal.classList.add('visibilityoff')
-        let z = document.getElementsByTagName('body')[0];
-        z.classList.remove('auto');
-        let x = document.getElementById("micro_nutrients");
-        x.classList.add('visibilityoff')
-		let meallist = document.getElementById("Meal_Components");
-        meallist.classList.add('visibilityoff')
-        //document.getElementsByTagName('tbody')[0].remove(); //FIXME: causes error
-    }
-    if(subject=="viewfood"){
-        input.style.display="none";
-        cfood.style.display="none";
-        dietlistel.style.display="none";
-        viewfood.style.display="block"
-    }
-    if(subject=="createmeal"){
-        input.style.display="none";
-        cfood.style.display="none";
-        dietlistel.style.display="none";
-        viewfood.style.display="none"
-        // cmeal.style.display="block"
-        cmeal.classList.remove('visibilityoff')
-    }
-    if(subject=="servingchange"){
-        input.style.display="none";
-        cfood.style.display="none";
-        dietlistel.style.display="none";
-        viewfood.style.display="none";
-        servingchange.style.display="block";
-    }
-}
+
 function loadsignup(){
     console.log('worked');
     let closelogin=document.getElementsByClassName('login');
@@ -338,9 +155,7 @@ function loadsignup(){
     let regpage=document.getElementById('registration');
     regpage.style.display="block";
     regpage.style.gridArea="calinfo";
-    let calorieinfo= document.getElementById('calorie_info');
     let input= document.getElementById('inputsection');
-    calorieinfo.style.display="none";
     input.style.display="none";
     let title=document.getElementsByClassName("websitename");
     title[0].style.fontSize="5vw";
@@ -361,9 +176,7 @@ function loadlogin(){
     let title=document.getElementsByClassName("websitename");
     title[0].style.fontSize="5vw";
     changeprimary("login");
-    let calorieinfo= document.getElementById('calorie_info');
     let input= document.getElementById('inputsection');
-    calorieinfo.style.display="none";
     input.style.display="none";
     
     let login=document.getElementsByClassName('login');
@@ -382,9 +195,7 @@ function closel (){
      marginreduc.classList.remove("marginreduc");
      let title=document.getElementsByClassName("websitename");
      title[0].style.fontSize="6vw";
-    let calorieinfo= document.getElementById('calorie_info');
     let input= document.getElementById('inputsection');
-    calorieinfo.style.display="grid";
     input.style.display="block";
      changeprimary();
 }
@@ -685,36 +496,7 @@ spart[0].classList.add("signuperr");
   signuppost(signupobj);
   return true;
 }
-function addEvent(node, type, callback) {
-    if (node.addEventListener) {
-      node.addEventListener(type, function(e) {
-        callback(e, e.target);
-      }, false);
-    } else if (node.attachEvent) {
-      node.attachEvent('on' + type, function(e) {
-        callback(e, e.srcElement);
-      });
-    }
-  }
-  function shouldBeValidated(field) {
-  return (
-    !(field.getAttribute("readonly") || field.readOnly) &&
-    !(field.getAttribute("disabled") || field.disabled) &&
-    (field.getAttribute("pattern") || field.hasAttribute("required"))
-  );
-}
-function instantValidation(field) {
-    if (shouldBeValidated(field)) {
-      var invalid =
-        (field.hasAttribute("required") && !field.value) ||
-        (field.getAttribute("pattern") && !new RegExp(field.getAttribute("pattern")).test(field.value));
-      if (!invalid && field.getAttribute("aria-invalid")) {
-        field.removeAttribute("aria-invalid");
-      } else if (invalid && !field.getAttribute("aria-invalid")) {
-        field.setAttribute("aria-invalid", "true");
-      }
-    }
-  }
+
  
 function signuppost(signupobj){
 // making post
@@ -749,9 +531,6 @@ function loadprofile(){
     window.location="./html/profile.html";
     // let wd=document.getElementsByClassName('s');
     // s.style.display="block";
-}
-function logout(){
-   $.get('http://127.0.0.1:5000/users/logout');
 }
    
   checkifloggedin();
