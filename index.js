@@ -18,7 +18,7 @@ const mysql = require('mysql');
 
 
 var db = {};
-const sequelize = new Sequelize("wozbase","pma","",{
+const sequelize = new Sequelize("wozbase","root","",{
   host: "localhost",
   dialect: "mysql",
   dialectModule:require("mysql2"),

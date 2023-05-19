@@ -29,7 +29,7 @@ function testSpeech() {
   resultPara.style.background = 'rgba(0,0,0,0.2)';
   diagnosticPara.textContent = '...diagnostic messages';
 
-  var grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrase +';';
+  var grammar = '#JSGF V1.0; grammar phrase; public <phrase> = ' + phrase + phrases.toString()+';';
   var recognition = new SpeechRecognition();
   var speechRecognitionList = new SpeechGrammarList();
   speechRecognitionList.addFromString(grammar, 1);
@@ -37,7 +37,7 @@ function testSpeech() {
   recognition.lang = 'en-US';
   recognition.interimResults = false;
   recognition.maxAlternatives = 1;
-
+phrases=phrases.map(phra=> phra.toLowerCase())
   recognition.start();
 
   recognition.onresult = function(event) {
@@ -51,7 +51,9 @@ function testSpeech() {
     // We then return the transcript property of the SpeechRecognitionAlternative object 
     var speechResult = event.results[0][0].transcript.toLowerCase();
     diagnosticPara.textContent = 'Speech received: ' + speechResult + '.';
-    if(speechResult === phrase) {
+    
+    if(phrases.includes(speechResult)) {
+      phrase=speechResult;
       count=0;
       //play video in return
       if(phrase=="thank you for your time"){
@@ -60,26 +62,35 @@ function testSpeech() {
         //leave page
         return window.location.href = "/thankyou";
       }
+      console.log(phrase);
       var result = responses.find(obj => {
-        return obj.content === phrase
+        console.log(obj.content);
+        return obj.content.toLowerCase() == phrase
       })
+      console.log(responses)
       resultPara.textContent = result.video[0];
       var video = document.getElementById('video');
+      video.removeAttribute("loop");
+      video.currentTime=video.duration;
       var mp4 = document.getElementById('mp4');
-      mp4.src = "../images/videos/" + result.video[count];
+      mp4.src = "../images/videos/iknowthat.mp4";
       video.load();
       video.play();
      functionstore= myHandler.bind(null,false,mp4,result.video,video)
      
       video.addEventListener('ended', functionstore);
-      if(!result.video[count+1]){
-        console.log("event removed");
-        video.removeEventListener("ended", functionstore);
-      }
       resultPara.style.background = 'lime';
     } else {
       resultPara.textContent = 'That didn\'t sound right.';
       resultPara.style.background = 'red';
+      var video = document.getElementById('video');
+      var mp4 = document.getElementById('mp4');
+      video.currentTime=video.duration;
+      mp4.src = "../images/videos/idontknowthat.mp4";
+      video.load();
+      video.play();
+      testSpeech()
+      
     }
 
     console.log('Confidence: ' + event.results[0][0].confidence);
@@ -139,18 +150,26 @@ function testSpeech() {
 function myHandler(e,mp4,result,player)
 {
 console.log("event occured"+mp4+result);
-if(!result[count+2]){
+if(!result[count]){
+  mp4.src = "../images/videos/waitsequence.mp4" ;
+  player.load();
+  player.play();
   console.log("event removed");
-  player.removeEventListener("ended", functionstore);
+    player.removeEventListener("ended", functionstore);
+    testSpeech()
+    player.setAttribute("loop","loop");
+  return
 }
    if(!e) 
    {
       e = window.event; 
    }
-   count++; //gotta move to bottom
+   
    mp4.src = "../images/videos/" + result[count];
    player.load();
    player.play();
+
+   count++;
 }
 
 testBtn.addEventListener('click', testSpeech);
