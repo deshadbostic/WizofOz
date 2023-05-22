@@ -17,7 +17,7 @@ function toggleelement(element){
             }
     }
 }
- // good function    wdwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+
  function loadvideos(){
     $.ajax({
         url:"/videos/",
@@ -527,10 +527,6 @@ regform.value=JSON.stringify(signupobj);
 // },"json");
 
 }
-function loadprofile(){
-    window.location="./html/profile.html";
-    // let wd=document.getElementsByClassName('s');
-    // s.style.display="block";
-}
+
    
   checkifloggedin();
